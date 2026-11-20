@@ -1,0 +1,9 @@
+{
+  "name": "consent-checkpoint",
+  "version": "0.1.0",
+  "private": true,
+  "type": "module",
+  "description": "An approval checkpoint between an agent and a share: plain code checks consent, scope, approval and retries against the records before anything leaves. Anything missing is held, never guessed.",
+  "scripts": { "test": "node --test" },
+  "license": "MIT"
+}

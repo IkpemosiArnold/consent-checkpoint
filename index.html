@@ -1,0 +1,70 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>Consent Checkpoint</title>
+<meta name="description" content="An approval checkpoint between an agent and a share. Plain code checks consent, scope, approval and retries against the records before anything leaves. Anything missing is held, never guessed.">
+<meta name="color-scheme" content="light dark">
+<meta name="theme-color" media="(prefers-color-scheme: light)" content="#ffffff">
+<meta name="theme-color" media="(prefers-color-scheme: dark)" content="#181314">
+<link rel="icon" href="data:,">
+<link rel="preload" href="fonts/public-sans.woff2" as="font" type="font/woff2" crossorigin>
+<link rel="preload" href="fonts/courier-prime-bold.woff2" as="font" type="font/woff2" crossorigin>
+<link rel="stylesheet" href="style.css?v=2">
+</head>
+<body>
+<svg width="0" height="0" style="position:absolute" aria-hidden="true">
+  <symbol id="i-check" viewBox="0 0 16 16"><path d="M2.5 8.600l3.600 3.600L13.500 4.200" fill="none" stroke="currentColor" stroke-width="2.200" stroke-linecap="square"/></symbol>
+  <symbol id="i-cross" viewBox="0 0 16 16"><circle cx="8" cy="8" r="5.700" fill="none" stroke="currentColor" stroke-width="2"/><path d="M4 12 12 4" fill="none" stroke="currentColor" stroke-width="2"/></symbol>
+  <symbol id="i-none" viewBox="0 0 16 16"><circle cx="8" cy="8" r="5.700" fill="none" stroke="currentColor" stroke-width="2" stroke-dasharray="2.400 2.400"/></symbol>
+</svg>
+<main class="form">
+  <header class="hd">
+    <div class="cell title">
+      <p class="mark">Consent Checkpoint <span class="tag stamp">Sample data</span></p>
+      <h1>An approval checkpoint before an agent shares an offer.</h1>
+      <p class="sub">Seven offers an agent queued for a made-up coalition. Plain code checks consent, approval and retries against the records, and a retry whose consent has run out is blocked.</p>
+    </div>
+    <section class="cell shade reading" aria-labelledby="summary">
+      <p class="summary" id="summary" role="status"></p>
+    </section>
+    <div class="cell how-cell">
+      <button type="button" class="btn text" id="why-btn" aria-expanded="false" aria-controls="why">How a share is checked</button>
+      <div class="why-text" id="why" hidden>
+        <p>Before the agent can send one member's details to a partner, five things must hold. There is a consent row for that member and that recipient. The consent is still good at the moment of sending, and a retry is checked again at retry time, not at the first attempt. Every field in the message is one the consent allows. A named person approved this exact version, after its last edit. And it has not already been delivered. All times are UTC.</p>
+        <p>A consent row's expiry date is the last day it is good for, to 23:59 UTC. Consent for one recipient is never stretched to another. A retry reuses the first attempt's key, so the receiver can drop a duplicate; if the message changed since then, a person confirms before it goes under a new key. Anything the records do not show is held with what is missing, and nothing is guessed.</p>
+      </div>
+    </div>
+  </header>
+
+  <div id="groups" class="groups"></div>
+
+  <section class="tool" id="audit" aria-labelledby="trail-h">
+    <h2 id="trail-h">Audit trail</h2>
+    <div class="cell">
+      <p class="tool-sub" id="trail-sub"></p>
+      <ol class="trail" id="trail"></ol>
+    </div>
+  </section>
+
+  <section class="tool" id="docs" aria-labelledby="docs-h">
+    <h2 id="docs-h">The records</h2>
+    <div class="cell">
+      <p class="tool-sub">What the checks read. Tap a record under any share to open its line here.</p>
+      <div class="tabs" id="doc-tabs" role="group" aria-label="Records"></div>
+      <div class="grid-scroll" id="doc-grid"></div>
+      <div class="actions top-actions">
+        <button type="button" id="reset" class="btn text">Reset sample</button>
+      </div>
+    </div>
+  </section>
+
+  <footer class="cell foot">
+    <p>For teams putting an approval step between an agent and a send. Built by Arnold Ikpemosi Adeyemi. Made-up members, partners and offers. A worksheet, not a legal consent record.</p>
+    <p><a href="https://ikpemosi.work">ikpemosi.work</a></p>
+  </footer>
+</main>
+<script type="module" src="app.js?v=2"></script>
+</body>
+</html>
